@@ -1,0 +1,38 @@
+import streamlit as st
+
+st.title("Chatbox Perayaan 17 Agustus")
+
+# Data pertanyaan dan jawaban
+qa_data = {
+     "Apa itu perayaan 17 Agustus?": "Perayaan 17 Agustus adalah hari kemerdekaan Republik Indonesia yang diperingati setiap tahun.",
+    "Kegiatan apa saja yang biasa dilakukan?": "Biasanya ada upacara bendera, lomba-lomba seperti balap karung, makan kerupuk, dan berbagai acara hiburan.",
+    "Mengapa penting memperingati 17 Agustus?": "Untuk mengenang jasa para pahlawan dan menumbuhkan rasa cinta tanah air.",
+    "Di mana saja perayaan ini dilakukan?": "Perayaan dilakukan di seluruh Indonesia, mulai dari sekolah, kantor, hingga lingkungan masyarakat.",
+    "Siapa yang memproklamasikan kemerdekaan Indonesia?": "Kemerdekaan Indonesia diproklamasikan oleh Ir. Soekarno dan Drs. Mohammad Hatta.",
+    "Apa makna lomba-lomba pada 17 Agustus?": "Lomba-lomba melambangkan semangat kebersamaan, kerja sama, dan kegembiraan dalam memperingati kemerdekaan.",
+    "Apa warna bendera Indonesia?": "Bendera Indonesia berwarna merah dan putih.",
+    "Apa nama upacara pada 17 Agustus?": "Upacara bendera memperingati Hari Kemerdekaan Republik Indonesia.",
+    "Apa lagu yang dinyanyikan saat upacara?": "Lagu Indonesia Raya dinyanyikan saat upacara bendera.",
+    "Apa arti warna merah dan putih pada bendera?": "Merah melambangkan keberanian, putih melambangkan kesucian.",
+    "Kapan proklamasi kemerdekaan Indonesia dibacakan?": "Proklamasi dibacakan pada tanggal 17 Agustus 1945.",
+    "Di mana proklamasi kemerdekaan dibacakan?": "Proklamasi dibacakan di Jalan Pegangsaan Timur No. 56, Jakarta.",
+    "Apa saja lomba yang populer saat 17 Agustus?": "Lomba balap karung, makan kerupuk, panjat pinang, tarik tambang, dan lomba kelereng.",
+    "Siapa saja yang biasanya mengikuti lomba 17 Agustus?": "Lomba diikuti oleh anak-anak, remaja, dan orang dewasa di lingkungan masyarakat."
+
+}
+
+# Riwayat chat
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []
+
+# Input pertanyaan
+user_question = st.text_input("Tulis pertanyaan tentang 17 Agustus:")
+
+if st.button("Kirim"):
+    answer = qa_data.get(user_question, "Maaf, pertanyaan belum tersedia dalam database.")
+    st.session_state.chat_history.append((user_question, answer))
+
+# Tampilkan riwayat chat
+for q, a in st.session_state.chat_history:
+    st.markdown(f"**Anda:** {q}")
+    st.markdown(f"**Chatbox:** {a}")
